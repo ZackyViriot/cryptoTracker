@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CryptoTrack
 
-## Getting Started
+A real-time cryptocurrency price tracking application built with Next.js and modern web technologies.
 
-First, run the development server:
+## Features
 
+- 🚀 Real-time cryptocurrency price updates
+- 🔍 Search and filter cryptocurrencies
+- 🌓 Dark/Light theme support
+- 📱 Responsive design
+- ⚡ Fast and efficient
+- 📚 Comprehensive documentation
+
+## Tech Stack
+
+- **Frontend**: Next.js with TypeScript
+- **State Management**: Zustand
+- **Styling**: Tailwind CSS
+- **API**: CoinGecko
+- **Documentation**: Docusaurus
+
+## Quick Start
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ZackyViriot/cryptoTracker.git
+cd crypto-tracker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application will be available at `http://localhost:3000`.
 
-## Learn More
+## Documentation
 
-To learn more about Next.js, take a look at the following resources:
+Our documentation is built with Docusaurus and includes:
+- Complete setup guide
+- Architecture overview
+- API integration details
+- State management explanation
+- Challenges and solutions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run the documentation locally:
+```bash
+cd docs
+npm install
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The documentation will be available at `http://localhost:3000`.
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+crypto-tracker/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx          # Main dashboard component
+│   │   └── store/
+│   │       └── store.ts      # Zustand store configuration
+├── docs/                     # Documentation (Docusaurus)
+└── README.md                 # Project overview
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Key Features Explained
+
+### Real-time Updates
+- Auto-refreshes every 30 seconds
+- Manual refresh button
+- Loading indicators
+- Error handling
+
+### Search Functionality
+- Instant filtering
+- Case-insensitive search
+- Search by name or symbol
+- Clear visual feedback
+
+### Theme Support
+- Dark/Light mode toggle
+- Persistent preference
+- Smooth transitions
+- Consistent styling
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+# cryptoTracker
