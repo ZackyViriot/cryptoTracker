@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Voice utilities for the Maintenance Request Voice Assistant
  * Uses the Web Speech API for speech recognition and synthesis
  */
-
-/// <reference path="./speech.d.ts" />
 
 /**
  * Check if speech recognition is supported in the browser

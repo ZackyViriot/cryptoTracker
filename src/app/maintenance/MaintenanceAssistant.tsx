@@ -5,7 +5,8 @@
  * Voice-based AI assistant for submitting maintenance requests
  */
 
-/// <reference path="./speech.d.ts" />
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import useMaintenanceStore from './maintenanceStore';
@@ -19,13 +20,7 @@ import {
   stopSpeaking,
   loadVoices
 } from './voiceUtils';
-import { ISSUE_TYPE_LABELS, URGENCY_LABELS } from './types';
-
-type MaintenanceAssistantProps = {
-  isDarkMode: boolean;
-};
-
-export default function MaintenanceAssistant({ isDarkMode }: MaintenanceAssistantProps) {
+export default function MaintenanceAssistant() {
   const {
     currentRequest,
     conversationStep,
@@ -34,6 +29,7 @@ export default function MaintenanceAssistant({ isDarkMode }: MaintenanceAssistan
     isSpeaking,
     interimTranscript,
     error,
+    isDarkMode,
     setIsListening,
     setIsSpeaking,
     setInterimTranscript,
@@ -43,7 +39,8 @@ export default function MaintenanceAssistant({ isDarkMode }: MaintenanceAssistan
     getAssistantPrompt,
     resetConversation,
     addMediaAttachment,
-    setConversationStep
+    setConversationStep,
+    toggleTheme
   } = useMaintenanceStore();
 
   const [textInput, setTextInput] = useState('');
@@ -227,7 +224,7 @@ export default function MaintenanceAssistant({ isDarkMode }: MaintenanceAssistan
           </h1>
 
           <p className={`mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            I'll help you submit a maintenance request for your apartment. You can speak or type your responses.
+            I&apos;ll help you submit a maintenance request for your apartment. You can speak or type your responses.
           </p>
 
           {!voiceSupported && (
@@ -283,16 +280,36 @@ export default function MaintenanceAssistant({ isDarkMode }: MaintenanceAssistan
             </div>
           </div>
 
-          <button
-            onClick={resetConversation}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              isDarkMode
-                ? 'bg-gray-700 hover:bg-gray-600 text-gray-300'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-            }`}
-          >
-            New Request
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={resetConversation}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isDarkMode
+                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-300'
+                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+              }`}
+            >
+              New Request
+            </button>
+
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-lg transition-colors ${
+                isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'
+              }`}
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       </header>
 

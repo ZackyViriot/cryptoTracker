@@ -4,6 +4,7 @@
  */
 
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import {
   MaintenanceRequest,
   ConversationStep,
@@ -60,6 +61,7 @@ type MaintenanceState = {
   // UI state
   isProcessing: boolean;
   error: string | null;
+  isDarkMode: boolean;
 
   // Submitted requests history
   submittedRequests: MaintenanceRequest[];
@@ -99,12 +101,17 @@ type MaintenanceState = {
 
   // Process user input and determine next step
   processUserInput: (input: string) => void;
+
+  // Theme
+  toggleTheme: () => void;
 };
 
 /**
  * Create the maintenance assistant store
  */
-const useMaintenanceStore = create<MaintenanceState>((set, get) => ({
+const useMaintenanceStore = create<MaintenanceState>()(
+  persist(
+    (set, get) => ({
   // Initial state
   currentRequest: createEmptyRequest(),
   conversationStep: 'greeting',
@@ -114,6 +121,7 @@ const useMaintenanceStore = create<MaintenanceState>((set, get) => ({
   interimTranscript: '',
   isProcessing: false,
   error: null,
+  isDarkMode: true,
   submittedRequests: [],
 
   // Basic setters
@@ -373,8 +381,17 @@ Please confirm if this information is correct, or let me know what you'd like to
         }
         break;
     }
-  }
-}));
+  },
+
+  // Toggle theme
+  toggleTheme: () => set((state) => ({ isDarkMode: !state.isDarkMode }))
+}),
+    {
+      name: 'maintenance-assistant-storage',
+      partialize: (state) => ({ isDarkMode: state.isDarkMode })
+    }
+  )
+);
 
 // Helper function to process issue type input
 function processIssueType(
