@@ -2,6 +2,7 @@
 //dashboard page
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import useStore from './store/store';
 
 export default function Dashboard() {
@@ -32,24 +33,40 @@ export default function Dashboard() {
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
                 <div className="mb-12 text-center relative">
-                    {/* Theme Toggle Button */}
-                    <button
-                        onClick={toggleTheme}
-                        className={`absolute right-0 top-0 p-2 rounded-lg 
-                                  ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}
-                                  transition-colors duration-200`}
-                        aria-label="Toggle theme"
-                    >
-                        {isDarkMode ? (
-                            <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    {/* Top Right Buttons */}
+                    <div className="absolute right-0 top-0 flex items-center gap-2">
+                        {/* Maintenance Assistant Link */}
+                        <Link
+                            href="/maintenance"
+                            className={`flex items-center gap-2 px-4 py-2 rounded-lg
+                                      ${isDarkMode ? 'bg-green-500/20 hover:bg-green-500/30 text-green-400' : 'bg-green-100 hover:bg-green-200 text-green-700'}
+                                      transition-colors duration-200`}
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                             </svg>
-                        ) : (
-                            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                            </svg>
-                        )}
-                    </button>
+                            <span className="hidden sm:inline text-sm font-medium">Maintenance</span>
+                        </Link>
+
+                        {/* Theme Toggle Button */}
+                        <button
+                            onClick={toggleTheme}
+                            className={`p-2 rounded-lg
+                                      ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}
+                                      transition-colors duration-200`}
+                            aria-label="Toggle theme"
+                        >
+                            {isDarkMode ? (
+                                <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            ) : (
+                                <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                </svg>
+                            )}
+                        </button>
+                    </div>
 
                     <h1 className={`text-4xl md:text-5xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
                         Crypto<span className="text-blue-500">Track</span>
